@@ -3,9 +3,10 @@ var https = require('https')
 var app = {}
 
 app.api = {
-	hostname: 'pointhq.com',
-	username: null,
-	apitoken: null,
+  hostname: 'pointhq.com',
+  username: null,
+  apitoken: null,
+  timeout: 10000,
 }
 
 function validate(callback, params, list){
@@ -141,17 +142,27 @@ app.call = function(status, method, path, callback, data) {
     });
   });
 
-  if( method.match( /(POST|PUT|DELETE)/ ) ) {
-    req.end( querystr )
-  } else {
-    req.end()
-  }
+  // timeout
+  req.on( 'socket', function( socket ) {
+    if( app.api.timeout ) {
+      socket.setTimeout( app.api.timeout )
+      socket.on( 'timeout', function() {
+        req.abort()
+      })
+    }
+  })
 
   req.on('error', function(e) {
     console.error(e);
     callback(e)
     return
   });
+
+  if( method.match( /(POST|PUT)/ ) ) {
+    req.end( querystr )
+  } else {
+    req.end()
+  }
 
 }
 
