@@ -1,0 +1,29 @@
+{
+  "author": {
+    "name":               "Copper.io",
+    "email":              "accounts@copper.io",
+    "url":                "http://copper.io)"
+  },
+  "name":                  "pointdns",
+  "description":           "pointhq.com API client",
+  "version":               "1.0.0",
+  "repository": {
+      "type":              "git",
+      "url":               "https://github.com/copper/nodejs-pointdns.git"
+  },
+  "bugs": {
+    "url":                 "https://github.com/copper/nodejs-pointdns/issues"
+  },
+  "main":                  "pointdns.js",
+  "dependencies":          {},
+  "devDependencies":       {},
+  "optionalDependencies":  {},
+  "engines": {
+    "node":                "*"
+  },
+  "keywords":              ["pointdns", "pointhq", "domains", "dns", "api"],
+  "license": {
+    "type":                "Public Domain",
+    "url":                 "https://github.com/copper/nodejs-pointdns/raw/master/LICENSE"
+  }
+}
