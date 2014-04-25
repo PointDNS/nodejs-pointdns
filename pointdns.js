@@ -109,7 +109,6 @@ app.call = function(status, method, path, callback, data) {
   if( method.match( /(POST|PUT)/ ) ) {
     headers['Content-Type'] = 'application/json'
     headers['Content-Length'] = querystr.length
-    console.log(headers)
   }
 
   var options = {
