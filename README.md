@@ -7,6 +7,14 @@ This library provides easy access to point zone & record management. For informa
 
 To access your Point account, you'll need to define your username & apitoken. The username is your email address and the apitoken is the API token which, can be found in My Account tab.
 
+## Instalation
+
+Currently you can install packages directly from GitHub
+
+```
+npm install git+https://github.com/copper/nodejs-pointdns.git
+```
+
 ## Example
 
 ### Load module
