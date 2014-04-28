@@ -9,8 +9,11 @@ To access your Point account, you'll need to define your username & apitoken. Th
 
 ## Instalation
 
-Currently you can install packages directly from GitHub
-
+NPM latest stable version:
+```
+npm install pointdns
+```
+or NPM most recent version:
 ```
 npm install git+https://github.com/copper/nodejs-pointdns.git
 ```
