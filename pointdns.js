@@ -9,7 +9,7 @@ app.api = {
   timeout: 10000,
 }
 
-function validate(callback, params, list){
+function validate(params, list, callback) {
   for (key in list) {
     if (!(list[key] in params)){
       callback(new Error('param not found: ' + list[key]))
@@ -20,7 +20,7 @@ function validate(callback, params, list){
 }
 
 app.zones = {
-  list: function(callback, params) {
+  list: function(params, callback) {
     var query = ''
     if (typeof params !== 'undefined' && 'group' in params) {
       query = '?group=' + params['group']
@@ -30,23 +30,23 @@ app.zones = {
 }
 
 app.zone = {
-  add: function(callback, fields) {
+  add: function(fields, callback) {
     app.call(201, 'POST', '/zones', callback, {'escape': 'zone', 'fields': {'zone': fields}})
   },
-  update: function(callback, params, fields) {
-    if (!(validate(callback, params, ['zone_id']))) {
+  update: function(params, fields, callback) {
+    if (!(validate(params, ['zone_id'], callback))){
        return
     }
     app.call(202, 'PUT', '/zones' + params['zone_id'], callback, {'escape': 'zone', 'fields': {'zone': fields}})
   },
-  get: function(callback, params) {
-    if (!(validate(callback, params, ['zone_id']))) {
+  get: function(params, callback) {
+    if (!(validate(params, ['zone_id'], callback))) {
        return
     }
     app.call(200, 'GET', '/zones/' + params['zone_id'], callback, {'escape': 'zone'})
   },
-  del: function(callback, params) {
-    if (!(validate(callback, params, ['zone_id']))) {
+  del: function(params, callback) {
+    if (!(validate(params, ['zone_id'], callback))) {
        return
     }
     app.call(202, 'DELETE', '/zones/' + params['zone_id'], callback, {'escape': 'zone'})
@@ -54,8 +54,8 @@ app.zone = {
 }
 
 app.records = {
-  list: function(callback, params) {
-    if (!(validate(callback, params, ['zone_id']))) {
+  list: function(params, callback) {
+    if (!(validate(params, ['zone_id'], callback))) {
        return
     }
     app.call(200, 'GET', '/zones/' + params['zone_id'] + '/records/', callback, {'list_escape': 'zone_record'})
@@ -63,26 +63,26 @@ app.records = {
 }
 
 app.record = {
-  add: function(callback, params, fields) { // zone_record
-    if (!(validate(callback, params, ['zone_id']))) {
+  add: function(params, fields, callback) { // zone_record
+    if (!(validate(params, ['zone_id'], callback))) {
        return
     }
     app.call(201, 'POST', '/zones/' + params['zone_id'] + '/records', callback, { 'escape': 'zone_record', 'fields':{'zone_record': fields} })
   },
-  update: function(callback, params, fields) {  // zone_record
-    if (!(validate(callback, params, ['zone_id', 'record_id']))) {
+  update: function(params, fields, callback) {  // zone_record
+    if (!(validate(params, ['zone_id', 'record_id'], callback))) {
        return
     }
     app.call(202, 'PUT', '/zones/' + params['zone_id'] + '/records' + params['record_id'], callback, { 'escape': 'zone_record', 'fields':{'zone_record': fields} })
   },
-  get: function(callback, params) {  // zone_record
-    if (!(validate(callback, params, ['zone_id', 'record_id']))) {
+  get: function(params, callback) {  // zone_record
+    if (!(validate(params, ['zone_id', 'record_id'], callback))) {
        return
     }
     app.call(200, 'GET', '/zones/' + params['zone_id'] + '/records/' + params['record_id'], callback, {'escape': 'zone_record'})
   },
-  del: function(callback, params) {  //  zone_record
-    if (!(validate(callback, params, ['zone_id', 'record_id']))) {
+  del: function(params, callback) {  //  zone_record
+    if (!(validate(params, ['zone_id', 'record_id'], callback))) {
        return
     }
     app.call(202, 'DELETE', '/zones/' + params['zone_id'] + '/records' + params['record_id'], callback, {'escape': 'zone_record'})
