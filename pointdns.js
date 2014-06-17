@@ -125,9 +125,12 @@ app.call = function(status, method, path, callback, data) {
       callback( new Error('http error') )
       return
     }
-
-    res.on('data', function(d) {
-      result = JSON.parse( d )
+    var responseData = '';
+    res.on('data', function(chunk) {
+      responseData += chunk;
+    });
+    res.on('end', function(){
+      result = JSON.parse( responseData )
       if ('escape' in data) {
         result = result[data['escape']]
       } else if ('list_escape' in data) {
@@ -137,6 +140,7 @@ app.call = function(status, method, path, callback, data) {
         })
         result = tmp
       }
+      req.end();
       callback(null, result)
     });
   });
@@ -171,4 +175,3 @@ module.exports = function( setup ) {
   }
   return app
 }
-
