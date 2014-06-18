@@ -107,7 +107,6 @@ app.req = function(status, method, path, data, callback){
 			method: method,
 			headers: headers,
 		}
-
 	if(method.match(/(POST|PUT)/)){
 		headers['Content-Type'] = 'application/json';
 		headers['Content-Length'] = querystr.length;
