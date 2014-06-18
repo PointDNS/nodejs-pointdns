@@ -28,77 +28,77 @@ var pointdns = require('pointdns')({ username: 'john@example.com', apitoken: 'se
 
 ### Create a new zone
 ```javascript
-pointdns.zone.add(function( err, zone ){
-  console.log('pointdns.zone.add', zone, err )
-}, {'name': 'example.com'})
+pointdns.zone.add({'name': 'example.com'}, function( err, zone ){
+    console.log('pointdns.zone.add', zone, err )
+})
 ```
 
 ### Get list of zones
 ```javascript
-pointdns.zones.list(function( err, zones ){
-  console.log('pointdns.zones.list', zones, err )
+pointdns.zones.list({}, function( err, zones ){
+    console.log('pointdns.zones.list', zones, err )
 })
 ```
 
 ### Get list of zones by group
 ```javascript
-pointdns.zones.list(function( err, zones ){
-  console.log('pointdns.zones.list group Clients', zones, err )
-}, {group:'Clients'})
+pointdns.zones.list({group:'Clients'}, function( err, zones ){
+    console.log('pointdns.zones.list group Clients', zones, err )
+})
 ```
 
 ### Update a zone
 ```javascript
-pointdns.zone.update(function( err, zone ){
-  console.log('pointdns.zone.update', zone, err )
-    }, {zone_id: 1}, {'group':'Services'})
+pointdns.zone.update({zone_id: 1}, {'group':'Services'}, function( err, zone ){
+    console.log('pointdns.zone.update', zone, err )
+})
 ```
 
 ### Get zone
 ```javascript
-pointdns.zone.get(function( err, zone ){
-  console.log('pointdns.zone.get', zone, err )
-}, {zone_id: 1})
+pointdns.zone.get({zone_id: 1}, function( err, zone ){
+    console.log('pointdns.zone.get', zone, err )
+})
 ```
 
 ### Delete zone
 ```javascript
-pointdns.zone.del(function( err, zone ){
-  console.log('pointdns.zone.del', zone, err )
-}, {zone_id: 1})
+pointdns.zone.del({zone_id: 1}, function( err, zone ){
+    console.log('pointdns.zone.del', zone, err )
+})
 ```
 
 ### Create a new record
 ```javascript
-pointdns.record.add(function( err, record ){
-  console.log('pointdns.record.add', record, err )
-}, {'zone_id': 1}, {"name":"site","record_type":"A","data":"1.2.3.4"})
+pointdns.record.add({'zone_id': 1}, {"name":"site","record_type":"A","data":"1.2.3.4"}, function( err, record ){
+    console.log('pointdns.record.add', record, err )
+})
 ```
 
 ### Update a record
 ```javascript
-pointdns.record.update(function( err, record ){
-  console.log('pointdns.record.update', record, err )
-}, {'zone_id': 1, 'record_id': 1}, {"name":"site2","data":"2.3.4.5"})
+pointdns.record.update({'zone_id': 1, 'record_id': 1}, {"name":"site2","data":"2.3.4.5"}, function( err, record ){
+    console.log('pointdns.record.update', record, err )
+})
 ```
 
 ### Get list of records for zone
 ```javascript
-pointdns.records.list(function( err, records ){
-  console.log('pointdns.records.list', records, err )
-}, {zone_id: 1})
+pointdns.records.list({zone_id: 1}, function( err, records ){
+    console.log('pointdns.records.list', records, err )
+})
 ```
 
 ### Get record for zone
 ```javascript
-pointdns.record.get(function( err, record ){
-  console.log('pointdns.record.get', record, err )
-}, {'zone_id': 1, 'record_id': 1})
+pointdns.record.get({'zone_id': 1, 'record_id': 1}, function( err, record ){
+    console.log('pointdns.record.get', record, err )
+})
 ```
 
 ### Delete a record
 ```javascript
-pointdns.record.del(function( err, records ){
-  console.log('pointdns.record.del', records, err )
-}, {'zone_id': 1, 'record_id': 1})
+pointdns.record.del({'zone_id': 1, 'record_id': 1}, function( err, records ){
+    console.log('pointdns.record.del', records, err )
+})
 ```
