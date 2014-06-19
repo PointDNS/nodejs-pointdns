@@ -1,10 +1,13 @@
 var https = require('https'),
+    http = require('http'),
     app = {
         api: {
             hostname: 'pointhq.com',
+            port: 443,
             username: null,
             apitoken: null,
             timeout: 10000,
+            https: true
         }
     };
 
@@ -102,7 +105,7 @@ app.req = function(status, method, path, data, callback){
         },
         options = {
             host: app.api.hostname,
-            port: 443,
+            port: app.api.port,
             path: path,
             method: method,
             headers: headers,
@@ -113,7 +116,7 @@ app.req = function(status, method, path, data, callback){
     }
 
     //request
-    var req = https.request(options, function(res){
+    var req = (app.api.https ? https : http).request(options, function(res){
         if(res.statusCode == 404){
             return callback('404 response. Incorrect or invalid fields');
         }
