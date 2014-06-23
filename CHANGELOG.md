@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.1 (2014/06/23)
+
+Adding feature from ([Dave Wood](https://github.com/Codesleuth))
+
+#### Features
+* exposes more configurable options including port and http ([9a6fa01](https://github.com/Codesleuth/nodejs-pointdns/commit/9a6fa016a3e9b86f9118f3659a2b919aeda725c4))
+
 ## v0.2.0 (2014/06/18)
 
 Merged a bunch of great changes from ([James Ross](https://github.com/CherryJimbo))
